@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from .models import Post
 
-def blog_posts(request):
-    posts = Post.objects.all()
-    return render(request, 'blog/blog_posts.html', {'posts': posts})
+# Example for home view
+def home(request):
+    return render(request, 'blog/index.html')
+
+# Example for post_detail view
+def post_detail(request, id):
+    return render(request, 'blog/post_detail.html', {'id': id})
