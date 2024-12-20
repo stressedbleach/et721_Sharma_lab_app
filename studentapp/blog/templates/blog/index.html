@@ -3,19 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    <title>Sharma's Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #532b63; /* Light gray background */
+            color: #6eb7b9; /* Softer text color */
+        }
+        h1 {
+            margin: 20px;
+            color: #75d6d1; /* Darker text for header */
+        }
+        .nav-links {
+            margin-top: 50px;
+        }
+        .nav-links a {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #6eb7b9; /* Light text color for links */
+            background-color: #6c757d; /* Softer gray-blue background */
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            background-color: #393b3d; /* Slightly darker gray on hover */
+        }
+    </style>
 </head>
 <body>
-    <h1>Blog Posts</h1>
-    <ul>
-        {% for post in posts %}
-            <li>
-                <a href="{% url 'post_detail' id=post.id %}">{{ post.title }}</a>
-                <p>{{ post.content|truncatewords:20 }}</p>  <!-- Display first 20 words of the content -->
-            </li>
-        {% empty %}
-            <li>No posts available.</li>
-        {% endfor %}
-    </ul>
+    <h1>Welcome to Sharma's Website</h1>
+    <div class="nav-links">
+        <a href="{% url 'blog_posts' %}">Check Out the Blog</a>
+        <a href="{% url 'task_list' %}">To-Do List</a>
+        <a href="{% url 'upload_notes' %}">Upload Notes</a> <!-- Added link for upload notes -->
+    </div>
 </body>
 </html>

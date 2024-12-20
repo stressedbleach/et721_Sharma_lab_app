@@ -1,8 +1,9 @@
+# blog/urls.py
 from django.urls import path
-from blog.views import post_views, feedback_views  # Correct the import here
+from blog.views.blog_posts_views import blog_posts, add_post, post_detail  # Include the post_detail view
 
 urlpatterns = [
-    path('', lambda request: render(request, 'blog/index.html'), name='home'),
-    path('post/<int:id>/', post_views.post_detail, name='post_detail'),
-    path('post/<int:post_id>/feedback/', feedback_views.feedback_form, name='feedback_form'),
+    path('', blog_posts, name='blog_posts'),
+    path('add/', add_post, name='add_post'),
+    path('<int:id>/', post_detail, name='blog_post_detail'),  # URL pattern for post detail
 ]

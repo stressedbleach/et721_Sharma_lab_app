@@ -1,6 +1,116 @@
-<h2>All Blog Posts</h2>
-<ul>
-    {% for post in posts %}
-        <li><a href="{% url 'blog_post_detail' post.id %}">{{ post.title }}</a></li>
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blog Posts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #532b63;
+            padding: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header {
+            text-align: center;
+            color: #75d6d1;
+            margin-bottom: 30px;
+        }
+
+        .nav-links {
+            margin-bottom: 20px;
+        }
+
+        .nav-links .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #6c757d;
+            color: #75d6d1;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .nav-links .button:hover {
+            background-color: #6c757d;
+        }
+
+        .post-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .post-card {
+            background-color: #6c757d;
+            padding: 20px;
+            margin: 10px;
+            width: 280px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-card h3 {
+            color: #75d6d1;
+            margin-bottom: 10px;
+        }
+
+        .post-card p {
+            color: #75d6d1;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            text-decoration: none;
+            color: #75d6d1;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">All Blog Posts</h2>
+
+        <div class="nav-links">
+            <a href="{% url 'add_post' %}" class="button">Write a New Post</a>
+            <a href="{% url 'home' %}" class="button">Return Home</a>
+        </div>
+
+        <div class="post-cards">
+            {% for post in posts %}
+                <div class="post-card">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.details|truncatewords:20 }}</p>
+                    <a href="{% url 'blog_post_detail' post.id %}" class="read-more">Read More</a>
+                </div>
+            {% empty %}
+                <p>No posts available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
